@@ -1,3 +1,5 @@
+/* Global CSS classes. Import this file from app/layout.tsx */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
