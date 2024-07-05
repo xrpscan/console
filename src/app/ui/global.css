@@ -1,9 +1,5 @@
 /* Global CSS classes. Import this file from app/layout.tsx */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -19,17 +15,25 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-image: linear-gradient(
+    180deg,
+    var(--bs-secondary-bg),
+    var(--bs-body-bg) 100px,
+    var(--bs-body-bg)
+  );
+  font-family: var(--bs-body-font-family);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.container {
+  max-width: 960px;
+}
+
+.dashboard-header {
+  max-width: 700px;
 }

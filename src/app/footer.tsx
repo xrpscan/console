@@ -1,0 +1,48 @@
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+const Footer = () => {
+    return(
+        <footer className="pt-4 my-md-5 pt-md-5 border-top">
+            <div className="row">
+                <div className="col-12 col-md">
+                    <ul className="list-unstyled text-small">
+                        <li className="mb-1">Powered by XRP Ledger</li>
+                        <li className="mb-1"><small className="d-block mb-3 text-body-secondary">&copy; 2017-2024 Scrambled Egg Technologies, LLC. All rights reserved.</small></li>
+                    </ul>
+                </div>
+                <div className="col-6 col-md">
+                    <h5>Explore</h5>
+                    <ul className="list-unstyled text-small">
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Advanced search</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">XRPL Metrics</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Amendments</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Validator registry</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">XRP Rich List</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">AMM Pools</a></li>
+                    </ul>
+                </div>
+                <div className="col-6 col-md">
+                    <h5>Support</h5>
+                    <ul className="list-unstyled text-small">
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">support@xrpscan.com</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">API Documentation</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Integration guide</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Contact us</a></li>
+                    </ul>
+                </div>
+                <div className="col-6 col-md">
+                    <h5>Social</h5>
+                    <ul className="list-unstyled text-small">
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">X</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">GitHub</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Reddit</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Instagram</a></li>
+                        <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Threads</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    )
+}
+export default Footer;
