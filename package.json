@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "bootstrap": "^5.3.3",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "ioredis": "^5.4.1",
     "next": "15.0.0-rc.0",
     "postcss": "^8",
     "react": "19.0.0-rc-9c6806964f-20240703",
