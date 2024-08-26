@@ -1,8 +1,8 @@
 import { Container } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 const Footer = () => {
     return(
-        <Container>
         <footer className="pt-4 my-md-5 pt-md-5 border-top">
             <div className="row">
                 <div className="col-12 col-md">
@@ -30,7 +30,7 @@ const Footer = () => {
                         <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Contact us</a></li>
                     </ul>
                 </div>
-                <div className="col-6 col-md">
+                {/* <div className="col-6 col-md">
                     <h6>Social</h6>
                     <ul className="list-unstyled text-small">
                         <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">X</a></li>
@@ -39,10 +39,9 @@ const Footer = () => {
                         <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Instagram</a></li>
                         <li className="mb-1"><a className="link-secondary text-decoration-none" href="#">Threads</a></li>
                     </ul>
-                </div>
+                </div> */}
             </div>
         </footer>
-        </Container>
     )
 }
 export default Footer;

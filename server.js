@@ -3,7 +3,7 @@
 const { createServer } = require("http");
 const { parse } = require("url");
 const next = require("next");
- 
+
 const dev = process.env.NODE_ENV !== "production";
 const hostname = process.env.NEXT_SERVER_HOSTNAME || "localhost";
 const port = process.env.NEXT_SERVER_PORT || 3000;
