@@ -1,6 +1,6 @@
 import { Client } from "@elastic/elasticsearch";
 
-const MAX_HITS = 1000;
+const MAX_HITS = 200;
 
 const esclient = new Client({
     node: process.env.ELASTICSEARCH_URL,
@@ -25,7 +25,6 @@ export async function POST(request: Request) {
     const query = await request.json();
     console.log(` QUERY: ${JSON.stringify(query)}`);
     const results = await getData(query);
-    console.log(JSON.stringify(results, null, 2));
     return Response.json(results);
 }
 
