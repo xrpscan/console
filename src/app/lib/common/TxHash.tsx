@@ -9,7 +9,7 @@ const TxHash = (props: ITxHash) => {
     if (typeof hash === 'string') {
         return <>
             <Flex maxWidth="120px">
-                <Link href={`https://xrpscan.com/tx/${hash}`} truncate><Code variant="ghost">{hash}</Code></Link>
+                <Link href={`https://xrpscan.com/tx/${hash}`} truncate target="_blank"><Code variant="ghost">{hash}</Code></Link>
             </Flex>
         </>
     } else {
