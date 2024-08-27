@@ -24,15 +24,15 @@ export const fields = (
     { name: "hash",         label: "hash",          inputType: "string", placeholder: "Enter tx hash",         defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
     { name: "ledger_index", label: "ledger_index",  inputType: "number", placeholder: "Enter ledger index",    defaultOperator: "=", operators: validOperators(DATE_OPERATORS), },
     { name: "Fee",          label: "Fee",           inputType: "number", placeholder: "Enter fee amount",      defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-    { name: "Memos",        label: "Memos",         inputType: "string", placeholder: "Enter memo",            defaultOperator: "contains", operators: validOperators(STRING_OPERATORS), },
+    { name: "Memos.Memo.MemoData", label: "Memo",   inputType: "string", placeholder: "Enter memo",            defaultOperator: "contains", operators: validOperators(STRING_OPERATORS), },
     { name: "SourceTag",    label: "SourceTag",     inputType: "number", placeholder: "Enter source tag",      defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
     { name: "NFTokenID",    label: "NFTokenID",     inputType: "string", placeholder: "Enter NFTokenID",       defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
     { name: "NetworkID",    label: "NetworkID",     inputType: "number", placeholder: "Enter Network ID",      defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
 
     // meta
-    { name: "delivered_amount.value",    label: "delivered_amount",            inputType: "number", placeholder: "Enter delivered_amount",           defaultOperator: "=",    operators: validOperators(NUMERIC_OPERATORS), },
-    { name: "delivered_amount.currency", label: "delivered_amount (currency)", inputType: "string", placeholder: "Enter delivered_amount.currency",  defaultOperator: "=",    operators: validOperators(EQUAL_OPERATORS), },
-    { name: "delivered_amount.issuer",   label: "delivered_amount (issuer)",   inputType: "string", placeholder: "Enter delivered_amount.issuer",    defaultOperator: "=",    operators: validOperators(ACCOUNT_OPERATORS), },
+    { name: "meta.delivered_amount.value",    label: "delivered_amount",            inputType: "number", placeholder: "Enter delivered_amount",           defaultOperator: "=",    operators: validOperators(NUMERIC_OPERATORS), },
+    { name: "meta.delivered_amount.currency", label: "delivered_amount (currency)", inputType: "string", placeholder: "Enter delivered_amount.currency",  defaultOperator: "=",    operators: validOperators(EQUAL_OPERATORS), },
+    { name: "meta.delivered_amount.issuer",   label: "delivered_amount (issuer)",   inputType: "string", placeholder: "Enter delivered_amount.issuer",    defaultOperator: "=",    operators: validOperators(ACCOUNT_OPERATORS), },
     { name: "meta.TransactionIndex",     label: "TransactionIndex",            inputType: "number", placeholder: "Enter tx index",                   defaultOperator: "=",    operators: validOperators(NUMERIC_OPERATORS), },
     { name: "meta.TransactionResult",    label: "TransactionResult",           valueEditorType: "select", values: transactionResults,                defaultValue: "Payment", operators: validOperators(EQUAL_OPERATORS), },
 
