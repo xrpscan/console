@@ -1,3 +1,5 @@
+import { LPTOKEN_PREFIX } from './Constants';
+
 export type RemixColors = "gray" | "gold" | "bronze" | "brown" | "yellow" | "amber" | "orange" | "tomato" | "red" | "ruby" | "crimson" | "pink" | "plum" | "purple" | "violet" | "iris" | "indigo" | "blue" | "cyan" | "teal" | "jade" | "green" | "grass" | "lime" | "mint" | "sky";
 
 export const getTxTypeStyle = (txType: string, prefix=''): RemixColors => {
@@ -140,4 +142,67 @@ export const getTxTypeLabel = (txType: string) => {
 			break;
 	}
 	return type.toUpperCase();
+}
+
+/**
+* Return Bootstrap style name that may be applied to a given TxResult code
+*
+* @param (String) bsStyle
+*/
+
+export const getTxResultStyle = (txResult: string) => {
+	let style='';
+	const code = txResult.substring(0,3);
+	switch (code) {
+		case 'tec':
+		case 'ter':
+			style = 'warning';
+			break;
+		case 'tef':
+		case 'tel':
+		case 'tem':
+			style = 'danger';
+			break;
+		case 'tes':
+			style = 'success';
+			break;
+		default:
+			break;
+	}
+	return style;
+}
+
+/** Convert 40 character HEX currency codes to ASCII codes
+*
+* @param (String) ASCII
+*
+* Reference: https://xrpl.org/currency-formats.html#currency-codes
+*/
+
+export const hex2ascii = (hex: string) => {
+	const hexCode = hex.toString();
+	let asciiCode = '';
+	for (let i = 0; (i < hexCode.length && hexCode.substr(i, 2) !== '00'); i += 2) {
+		asciiCode += String.fromCharCode( parseInt(hexCode.substr(i, 2), 16));
+	}
+	return asciiCode;
+}
+
+/**
+ * Return correct human readable currency code, given ISO 4217 or HEX codes
+ *
+ * @param (String) ASCII
+ */
+
+export const currencyName = (code: string) => {
+	if (code && code.length === 40) {
+		if (code.startsWith('03')) {
+			// return <>{LPTOKEN_PREFIX}&nbsp;{code.substring(0,4)}<XIcon icon="ellipsis" faStyle={'fas'} className={'ml-0 mr-0'}/>{code.substring(code.length - 4)}</>;
+			return "LP TOKEN"
+		} else {
+			return hex2ascii(code);
+		}
+	} else {
+		return (typeof code === 'string') ? code.substring(0,16) : code;
+	}
 }

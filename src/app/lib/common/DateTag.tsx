@@ -1,4 +1,4 @@
-import { Text } from "@radix-ui/themes";
+import { Code, Text } from "@radix-ui/themes";
 import { useFormatter } from "next-intl";
 import { rippleTimeToISOTime } from "xrpl";
 
@@ -15,7 +15,9 @@ const DateTag = (props: IDateTag) => {
 		month: "2-digit",
 		day: "2-digit",
 		hour: "2-digit",
-		minute: "2-digit"
+		minute: "2-digit",
+		hour12: false,
+		timeZone: "UTC",
 	});
 
 	return (

@@ -1,8 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { FormattedNumber } from 'react-intl';
+import { useFormatter } from 'next-intl';
+import { Code, Flex, Link } from "@radix-ui/themes";
 import { currencyName } from '../common/Helpers';
+import { XrplNetworkUrls, NATIVE_CURRENCY } from './Constants';
 
 /*
 * Money tag to display currency values.
@@ -20,7 +19,17 @@ With Issuer:
 />
 *
 */
-const Money = (props) => {
+
+export interface IMoney {
+	value: number,
+	currency: string,
+	issuer: string,
+	min?: number,
+	max?: number,
+	drops?: boolean,
+}
+
+const Money = (props: IMoney) => {
 	const {
 		value,
 		currency,
@@ -29,45 +38,28 @@ const Money = (props) => {
 		max,
 		drops,
 	} = props;
+	const format = useFormatter();
 
-	let totalvalue = (currency === 'XRP' && drops) ? value / 1000000 : value;
+	let totalvalue = (currency === NATIVE_CURRENCY && drops) ? value / 1000000 : value;
 	/*
 	* Transform hex currency code to human readable code
 	*/
-	let currencyWithIssuer = currencyName(currency);
-	if (issuer && currency && currency !== "XRP") {
-		currencyWithIssuer = <Link to={`/account/${issuer}`}>{currencyWithIssuer}</Link>
+	let currencyWithIssuer = <>{currencyName(currency)}</>;
+	if (issuer && currency && currency !== NATIVE_CURRENCY) {
+		currencyWithIssuer = <Link href={`${XrplNetworkUrls.XrplMainnet}/account/${issuer}`} truncate target="_blank">{currencyWithIssuer}</Link>
 	}
 
 	return (
-		<span className="money">
-			<FormattedNumber
+		<Code variant="ghost" color='gray'>
+			{format.number(totalvalue)}
+			{/* <FormattedNumber
 				value={totalvalue}
 				minimumFractionDigits={min}
 				maximumFractionDigits={max}
-			/>&nbsp;{currencyWithIssuer}
-		</span>
+			/> */}&nbsp;
+			{currencyWithIssuer}
+		</Code>
 	)
-}
-
-Money.defaultProps = {
-	currency: "XRP",
-	issuer: null,
-	min: 0,
-	max: 6,
-	drops: false,
-}
-
-Money.propTypes = {
-	value: PropTypes.oneOfType([
-		PropTypes.number.isRequired,
-		PropTypes.string.isRequired,
-	]),
-	currency: PropTypes.string,
-	issuer: PropTypes.string,
-	min: PropTypes.number,
-	max: PropTypes.number,
-	drops: PropTypes.bool,
 }
 
 export default Money;

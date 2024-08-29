@@ -1,32 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import XBadge from './XBadge';
+import { Code } from "@radix-ui/themes";
 
+interface IDestinationTag {
+  prefix?: string,
+  tag: string,
+  suffix?: string,
+}
 
-const DestinationTag = (props) => {
+const DestinationTag = (props: IDestinationTag) => {
   const { prefix, tag, suffix } = props;
 
   let renderedTag = tag;
-  if (prefix) {
+  if (typeof prefix === "string") {
     renderedTag = `${prefix} ${renderedTag}`;
   }
-  if (suffix) {
+  if (typeof suffix === "string") {
     renderedTag = `${renderedTag} ${suffix}`;
   }
 
   return (
-    <XBadge variant="secondary">{renderedTag}</XBadge>
+    <Code variant="soft" color="gray">{renderedTag}</Code>
   )
-}
-
-DestinationTag.defaultProps = {
-  prefix: null,
-  tag: '',
-  suffix: null,
-}
-
-DestinationTag.propTypes = {
-  tag: PropTypes.number.isRequired,
 }
 
 export default DestinationTag;

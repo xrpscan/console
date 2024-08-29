@@ -15,7 +15,7 @@ export const ResultsTable = (props: any) => {
                 hitsTotalValue={hitsTotalValue}
                 _shards={_shards}
             />
-            <Table.Root variant="surface">
+            <Table.Root variant="surface" layout="auto">
                 <Table.Header>
                     <ResultItemHeader />
                 </Table.Header>

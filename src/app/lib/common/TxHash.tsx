@@ -1,4 +1,5 @@
-import { Code, Flex, Link, Text } from "@radix-ui/themes";
+import { Code, Flex, Link } from "@radix-ui/themes";
+import { XrplNetworkUrls } from "./Constants";
 
 interface ITxHash {
     hash: string,
@@ -9,7 +10,9 @@ const TxHash = (props: ITxHash) => {
     if (typeof hash === 'string') {
         return <>
             <Flex maxWidth="120px">
-                <Link href={`https://xrpscan.com/tx/${hash}`} truncate target="_blank"><Code variant="ghost">{hash}</Code></Link>
+                <Link href={`${XrplNetworkUrls.XrplMainnet}/tx/${hash}`} truncate target="_blank">
+                    <Code variant="ghost">{hash}</Code>
+                </Link>
             </Flex>
         </>
     } else {
