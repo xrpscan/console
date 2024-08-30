@@ -58,7 +58,7 @@ export const ResultItem = (props: any) => {
                 </Table.Cell>
                 <Table.Cell align="right">
                     { (tx.meta?.delivered_amount?.value < tx.Amount?.value) &&
-                       <PieChartIcon/>
+                       <><PieChartIcon/>&nbsp;</>
                     }
                     { tx.meta?.delivered_amount?.value &&
                         <Money value={tx.meta.delivered_amount.value} currency={tx.meta.delivered_amount.currency} issuer={tx.meta.delivered_amount.issuer} drops min={6} max={6} />

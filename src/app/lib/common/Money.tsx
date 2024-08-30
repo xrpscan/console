@@ -51,7 +51,7 @@ const Money = (props: IMoney) => {
 
 	return (
 		<Code variant="ghost" color='gray'>
-			{format.number(totalvalue, { notation: "standard", minimumFractionDigits: 6, maximumFractionDigits: 6 })}
+			{format.number(totalvalue, { notation: "standard", minimumFractionDigits: min, maximumFractionDigits: max })}
 			{/* <FormattedNumber
 				value={totalvalue}
 				minimumFractionDigits={min}
