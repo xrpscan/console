@@ -52,10 +52,10 @@ const AccountTag = (props: any) => {
   let styledLinkedAccountNameTags = styledLinkedAccountName;
   const tag = (st >= 0) ? st : (dt >= 0) ? dt : undefined;
   if (tag >= 0) {
-    styledLinkedAccountNameTags = <>
-      {styledLinkedAccountName}
+    styledLinkedAccountNameTags = <Flex gap="1">
+      {styledLinkedAccountName} 
       <DestinationTag prefix={st >= 0 ? "ST:" : "DT:"} tag={tag} />
-    </>
+    </Flex>
   }
 
   return styledLinkedAccountNameTags;

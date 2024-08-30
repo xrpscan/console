@@ -1,4 +1,4 @@
-import { Flex, Table, Callout, Section, Code } from "@radix-ui/themes";
+import { Flex, Table, Callout, Code } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { ResultItem, ResultItemHeader } from "./lib/common/ResultItem";
 import { Container } from "react-bootstrap";
@@ -56,9 +56,6 @@ export const ResultStats = (props: any) => {
                 }
                 {_shards?.total >= 0 && _shards.successful >= 0 &&
                 <Code variant="soft" color="grass">SHARDS: {_shards?.successful}/{_shards.total}</Code>
-                }
-                {_shards?.total >= 0 && _shards.failed >= 0 &&
-                <Code variant="soft" color="gold">FAILED: {_shards?.failed}/{_shards.total}</Code>
                 }
             </Flex>
         </Container>

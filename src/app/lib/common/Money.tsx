@@ -51,7 +51,7 @@ const Money = (props: IMoney) => {
 
 	return (
 		<Code variant="ghost" color='gray'>
-			{format.number(totalvalue)}
+			{format.number(totalvalue, "precise")}
 			{/* <FormattedNumber
 				value={totalvalue}
 				minimumFractionDigits={min}

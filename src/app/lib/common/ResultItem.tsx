@@ -18,19 +18,17 @@ const isTrustlineRemoved = (tx: ITrustlineTx) => {
 }
 
 export const ResultItemHeader = () => {
-    return <>
-        <Table.Row>
-            <Table.ColumnHeaderCell>#</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="center">Type</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="center">Date</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="left">Tx hash</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="left">From</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="left">&rarr;</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="left">To</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="right">Amount</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell align="right"><CheckIcon/></Table.ColumnHeaderCell>
-        </Table.Row>
-    </>;
+    return <Table.Row>
+        <Table.ColumnHeaderCell>#</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell align="center">Type</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell align="center">Date</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell align="left">Tx hash</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell align="left">From</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell align="left">&rarr;</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell align="left">To</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell justify="end">Amount</Table.ColumnHeaderCell>
+        <Table.ColumnHeaderCell justify="end"><CheckIcon/></Table.ColumnHeaderCell>
+    </Table.Row>;
 }
 
 export const ResultItem = (props: any) => {
@@ -39,7 +37,7 @@ export const ResultItem = (props: any) => {
         const tx = hit._source;
         return <>
             <Table.Row>
-                <Table.Cell>{i+1}</Table.Cell>
+                <Table.RowHeaderCell>{i+1}</Table.RowHeaderCell>
                 <Table.Cell align="left">
                     <TxType type={tx.TransactionType}/>
                 </Table.Cell>

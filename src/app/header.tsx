@@ -1,4 +1,4 @@
-import { Button, Code } from "@radix-ui/themes";
+import { Code } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ const Header = () => {
                     <Code size="6" variant="soft">Console</Code>
                 </Link>
                 <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    <Button variant="soft" className="me-3 py-2 link-body-emphasis">Login</Button>
+                    {/* <Button variant="soft" className="me-3 py-2 link-body-emphasis">Login</Button> */}
                 </nav>
             </div>
         </header>
