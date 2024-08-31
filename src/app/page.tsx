@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Box, Button, Heading, Spinner } from "@radix-ui/themes";
-import { formatQuery, QueryBuilder } from "react-querybuilder";
+import { defaultValidator, formatQuery, QueryBuilder } from "react-querybuilder";
 import type { RuleGroupType } from "react-querybuilder";
 import { Container } from "react-bootstrap";
 import { Card } from "@radix-ui/themes";
@@ -12,11 +12,12 @@ import { fields } from "./lib/qbuilder/fields";
 import { ResultsTable } from "./results";
 import Features from "./features";
 import "react-querybuilder/dist/query-builder.css";
+import "./lib/qbuilder/styles.css";
 
 const initialQuery: RuleGroupType = { combinator: "and", rules: [
   { field: "TransactionType", operator: "=", value: "Payment" },
   { field: "Destination", operator: "=", value: "" },
-  { field: "DestinationTag", operator: "=", value: "" },
+  // { field: "DestinationTag", operator: "=", value: "" },
 ] };
 
 const SEARCH_API_ENDPOINT = "/api/v1/search"
@@ -60,6 +61,8 @@ export default function Home() {
             query={query}
             onQueryChange={setQuery}
             controlClassnames={{ queryBuilder: 'queryBuilder-branches' }}
+            parseNumbers="enhanced"
+            validator={defaultValidator}
           />
 
           <Box>
