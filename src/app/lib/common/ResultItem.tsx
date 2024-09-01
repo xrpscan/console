@@ -32,7 +32,7 @@ export const ResultItemHeader = () => {
 }
 
 export const ResultItem = (props: any) => {
-    const { i, hit } = props;
+    const { i, hit, AccountName, DestinationName } = props;
     if (hit?._source) {
         const tx = hit._source;
         return <>
@@ -48,13 +48,13 @@ export const ResultItem = (props: any) => {
                     <TxHash hash={tx.hash} />
                 </Table.Cell>
                 <Table.Cell align="left">
-                    <AccountTag account={tx.Account} link minimal st={tx.SourceTag} />
+                    <AccountTag account={tx.Account} link minimal st={tx.SourceTag} name={AccountName}/>
                 </Table.Cell>
                 <Table.Cell align="left">
                     &rarr;
                 </Table.Cell>
                 <Table.Cell align="left">
-                    {tx.Destination ? <AccountTag account={tx.Destination} link minimal dt={tx.DestinationTag} /> : "XRPL" }
+                    {tx.Destination ? <AccountTag account={tx.Destination} link minimal dt={tx.DestinationTag} name={DestinationName}/> : "XRPL" }
                 </Table.Cell>
                 <Table.Cell align="right">
                     { (tx.meta?.delivered_amount?.value < tx.Amount?.value) &&

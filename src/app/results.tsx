@@ -4,7 +4,7 @@ import { ResultItem, ResultItemHeader } from "./lib/common/ResultItem";
 import { Container } from "react-bootstrap";
 
 export const ResultsTable = (props: any) => {
-    const results = props.results;
+    const { results, names } = props;
     if (results?.hits?.hits && results?.hits?.hits.length > 0) {
         const hits = results?.hits?.hits;
         const hitsTotalValue = results?.hits?.total?.value;
@@ -21,7 +21,13 @@ export const ResultsTable = (props: any) => {
                 </Table.Header>
                 <Table.Body>
                     {hits.map((hit: any, i: number) => (
-                        <ResultItem key={i} i={i} hit={hit} />
+                        <ResultItem
+                            key={i}
+                            i={i}
+                            hit={hit}
+                            AccountName={names.get(hit?._source?.Account)}
+                            DestinationName={names.get(hit?._source?.Destination)}
+                        />
                     ))}
                 </Table.Body>
             </Table.Root>

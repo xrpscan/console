@@ -1,6 +1,7 @@
 import { Client } from "@elastic/elasticsearch";
 
 const MAX_HITS = 200;
+const PLATFORM_SEARCH_INDEX = "platform.transactions";
 
 const esclient = new Client({
     node: process.env.ELASTICSEARCH_URL,
@@ -29,10 +30,9 @@ export async function POST(request: Request) {
     return Response.json(results);
 }
 
-// TODO: Fix any
-async function getData(query: any) {
+async function getData(query: object) {
     const results = await esclient.search({
-        index: "platform.transactions",
+        index: PLATFORM_SEARCH_INDEX,
         body: { query },
         size: MAX_HITS,
     })

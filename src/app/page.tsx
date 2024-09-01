@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Button, Heading, Spinner } from "@radix-ui/themes";
 import { defaultValidator, formatQuery, QueryBuilder } from "react-querybuilder";
 import type { RuleGroupType } from "react-querybuilder";
@@ -20,7 +20,8 @@ const initialQuery: RuleGroupType = { combinator: "and", rules: [
   // { field: "DestinationTag", operator: "=", value: "" },
 ] };
 
-const SEARCH_API_ENDPOINT = "/api/v1/search"
+const SEARCH_API_ENDPOINT = "/api/v1/search";
+const NAMES_API_ENDPOINT = "https://api.xrpscan.com/api/v1/names/well-known";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -28,6 +29,26 @@ export default function Home() {
   const [ searched, setSearched ] = useState(false);
   const [ loading, setLoading ] = useState(false);
   const [ results, setResults ] = useState({});
+  const [ names, setNames ] = useState(new Map());
+
+  // Fetch account names from XRPSCAN Names API and cache
+  useEffect(() => {
+    const _names = new Map();
+    async function fetchNames() {
+      const response = await fetch(NAMES_API_ENDPOINT, { cache: "force-cache" });
+      const namesJSON = await response.json();
+      for (const n of namesJSON) {
+        _names.set(n.account, n)
+      }
+      setNames(_names);
+    }
+    // Call fetchNames
+    fetchNames();
+    // Clean up names
+    return () => {
+      setNames(new Map());
+    }
+  }, []);
 
   const doQuery = async () => {
     const esQuery = formatQuery(query, { format: "elasticsearch", parseNumbers: true })
@@ -79,7 +100,7 @@ export default function Home() {
           <Features/>
         }
         {searched && !loading &&
-          <ResultsTable results={results} />
+          <ResultsTable results={results} names={names} />
         }
       </Container>
     </>

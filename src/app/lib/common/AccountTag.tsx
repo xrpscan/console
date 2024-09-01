@@ -3,17 +3,11 @@
 import { Flex, Link } from "@radix-ui/themes";
 import { XrplNetworkUrls } from "./Constants";
 import DestinationTag from "./DestinationTag";
-
-export interface IAccountName {
-  account: string,
-  username: string,
-  name: string,
-  desc: string,
-}
+import { IName } from "../definitions";
 
 export interface IAccountTag {
   account: string,
-  name: IAccountName,
+  name: IName,
   link: boolean,
   minimal: boolean,
   st: number,
