@@ -82,7 +82,7 @@ export default function Home() {
             query={query}
             onQueryChange={setQuery}
             controlClassnames={{ queryBuilder: 'queryBuilder-branches' }}
-            parseNumbers="enhanced"
+            parseNumbers="strict"
             validator={defaultValidator}
           />
 
