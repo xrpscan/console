@@ -1,6 +1,7 @@
 import { Flex, Table, Callout, Code } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { ResultItem, ResultItemHeader } from "./lib/common/ResultItem";
+import { ResultItem } from "./lib/results/ResultItem";
+import { ResultItemHeader } from "./lib/results/ResultItemHeader";
 import { Container } from "react-bootstrap";
 
 export const ResultsTable = (props: any) => {

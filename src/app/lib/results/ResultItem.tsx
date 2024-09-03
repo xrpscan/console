@@ -1,35 +1,11 @@
 import { CheckIcon, Cross1Icon, ExclamationTriangleIcon, PieChartIcon, PlusIcon, MinusIcon, IdCardIcon } from "@radix-ui/react-icons";
 import { Code, Table } from "@radix-ui/themes";
-import TxType from "./TxType";
-import DateTag from "./DateTag";
-import TxHash from "./TxHash";
-import AccountTag from "./AccountTag";
-import Money from "./Money";
-import { getTxResultStyle } from "./Helpers";
-
-interface ITrustlineTx {
-    LimitAmount: {
-        value: number,
-    }
-}
-
-const isTrustlineRemoved = (tx: ITrustlineTx) => {
-    return Number(tx?.LimitAmount?.value) === 0 ? true : false
-}
-
-export const ResultItemHeader = () => {
-    return <Table.Row>
-        <Table.ColumnHeaderCell>#</Table.ColumnHeaderCell>
-        <Table.ColumnHeaderCell align="center">Type</Table.ColumnHeaderCell>
-        <Table.ColumnHeaderCell align="center">Date</Table.ColumnHeaderCell>
-        <Table.ColumnHeaderCell align="left">Tx hash</Table.ColumnHeaderCell>
-        <Table.ColumnHeaderCell align="left">From</Table.ColumnHeaderCell>
-        <Table.ColumnHeaderCell align="left">&rarr;</Table.ColumnHeaderCell>
-        <Table.ColumnHeaderCell align="left">To</Table.ColumnHeaderCell>
-        <Table.ColumnHeaderCell justify="end">Amount</Table.ColumnHeaderCell>
-        <Table.ColumnHeaderCell justify="end"><CheckIcon/></Table.ColumnHeaderCell>
-    </Table.Row>;
-}
+import TxType from "../common/TxType";
+import DateTag from "../common/DateTag";
+import TxHash from "../common/TxHash";
+import AccountTag from "../common/AccountTag";
+import Money from "../common/Money";
+import { formatTransactionResult, getTxResultStyle, isTrustlineRemoved } from "../common/Helpers";
 
 export const ResultItem = (props: any) => {
     const { i, hit, AccountName, DestinationName } = props;
@@ -83,17 +59,22 @@ export const ResultItem = (props: any) => {
                             <IdCardIcon/> {tx.TicketCount}
                         </>
                     }
+                    { tx.TransactionType === "OfferCancel" && tx.OfferSequence >= 0 &&
+                        <>
+                            <Code variant="soft" color="gray">OFFER SEQ: {tx.OfferSequence}</Code>
+                        </>
+                    }
                 </Table.Cell>
                 <Table.Cell align="right">
                     <span>
                         {getTxResultStyle(tx.meta?.TransactionResult) === 'success' &&
-                            <CheckIcon color="green"/>
+                            <><CheckIcon color="green"/></>
                         }
                         {getTxResultStyle(tx.meta?.TransactionResult) === 'warning' &&
-                            <Cross1Icon color="red"/>
+                            <><Code variant="outline" color="amber">{formatTransactionResult(tx.meta?.TransactionResult)}</Code></>
                         }
                         {getTxResultStyle(tx.meta?.TransactionResult) === 'danger' &&
-                            <ExclamationTriangleIcon color="red"/>
+                            <><Code variant="outline" color="red"> {formatTransactionResult(tx.meta?.TransactionResult)}</Code></>
                         }
                     </span>
                 </Table.Cell>

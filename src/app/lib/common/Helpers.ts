@@ -206,3 +206,24 @@ export const currencyName = (code: string) => {
 		return (typeof code === 'string') ? code.substring(0,16) : code;
 	}
 }
+
+/**
+ * Return true if this TrustSet transaction sets a trustline, else return false
+ */
+interface ITrustlineTx {
+    LimitAmount: {
+        value: number,
+    }
+}
+
+export const isTrustlineRemoved = (tx: ITrustlineTx) => {
+    return Number(tx?.LimitAmount?.value) === 0 ? true : false
+}
+
+/**
+ * Return human friendly error codes. Removes first 3 characters of the error
+ * code and returns the rest.
+ */
+export const formatTransactionResult = (TransactionResult: string) => {
+	return TransactionResult.slice(3);
+}

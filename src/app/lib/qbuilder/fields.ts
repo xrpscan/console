@@ -51,7 +51,7 @@ export const fields = (
     { name: "ctid", label: "ctid", inputType: "string", placeholder: "Enter CTID", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
     { name: "DIDDocument", label: "DIDDocument", inputType: "string", placeholder: "Enter DIDDocument", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
     { name: "Data", label: "Data", inputType: "string", placeholder: "Enter data", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-    { name: "date", label: "date", inputType: "datetime-local", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
+    { name: "date", label: "date", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
     { name: "meta.delivered_amount.value", label: "delivered_amount", inputType: "number",  defaultValue: 0, placeholder: "Enter delivered_amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
     { name: "meta.delivered_amount.currency", label: "delivered_amount (currency)", inputType: "string", placeholder: "Enter delivered_amount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
     { name: "meta.delivered_amount.issuer", label: "delivered_amount (issuer)", inputType: "string", placeholder: "Enter delivered_amount.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
