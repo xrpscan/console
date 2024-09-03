@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Box, Button, Heading, Spinner } from "@radix-ui/themes";
+import { Box, Button, Callout, Heading, Spinner } from "@radix-ui/themes";
 import { defaultValidator, formatQuery, QueryBuilder } from "react-querybuilder";
 import type { RuleGroupType } from "react-querybuilder";
 import { Container } from "react-bootstrap";
@@ -13,6 +13,7 @@ import { ResultsTable } from "./results";
 import Features from "./features";
 import "react-querybuilder/dist/query-builder.css";
 import "./lib/qbuilder/styles.css";
+import { GlobalNotice } from "./lib/common/GlobalNotice";
 
 const initialQuery: RuleGroupType = { combinator: "and", rules: [
   { field: "TransactionType", operator: "=", value: "Payment" },
@@ -75,6 +76,7 @@ export default function Home() {
   return (
     <>
       <Container className="py-1">
+      <GlobalNotice/>
       <Heading size="5" className="">{t("title")}</Heading>
       <Card variant="classic">
           <QueryBuilder 
