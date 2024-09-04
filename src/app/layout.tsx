@@ -25,6 +25,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <link rel="icon" href="https://xrpscan.com/xrpscan-favicon.svg" />
       <body>
         <NextIntlClientProvider messages={messages}>
         <Theme accentColor="indigo" appearance="inherit" radius="small" scaling="95%">
