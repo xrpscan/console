@@ -97,7 +97,7 @@ export default function Home() {
         </Card>
       </Container>
 
-      <Container className="py-3 m-1">
+      <Container className="pt-3 pb-5 m-1">
         {!searched &&
           <Features/>
         }
