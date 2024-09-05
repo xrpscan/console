@@ -89,7 +89,7 @@ export default function Home() {
           />
 
           <Box>
-            <Button variant="solid" size="2" mt="4" onClick={doQuery}>
+            <Button variant="solid" size="2" mt="4" onClick={doQuery} loading={loading}>
               <Spinner loading={loading}><MagnifyingGlassIcon/></Spinner>
               Search &rarr;
             </Button>

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "@radix-ui/themes/styles.css";
-// import "@radix-ui/themes/layout.css"; // TODO: Check if this is actualy required
 import "@/app/ui/global.css";
 import Header from "./header";
 import Footer from "./footer";
