@@ -39,6 +39,8 @@ const TransactionType = {
   NFTokenMint: 'NFTokenMint',
   OfferCancel: 'OfferCancel',
   OfferCreate: 'OfferCreate',
+  OracleDelete: 'OracleDelete',
+  OracleSet: 'OracleSet',
   Payment: 'Payment',
   PaymentChannelClaim: 'PaymentChannelClaim',
   PaymentChannelCreate: 'PaymentChannelCreate',
@@ -49,6 +51,7 @@ const TransactionType = {
   TrustSet: 'TrustSet',
   EnableAmendment: 'EnableAmendment',
   SetFee: 'SetFee',
+  UNLModify: 'UNLModify',
 };
 Object.freeze(TransactionType);
 export { TransactionType };
