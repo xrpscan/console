@@ -14,6 +14,7 @@ import Features from "./features";
 import "react-querybuilder/dist/query-builder.css";
 import "./lib/qbuilder/styles.css";
 import { GlobalNotice } from "./lib/common/GlobalNotice";
+import { FieldSelector } from "./lib/qbuilder/FieldSelector";
 
 const initialQuery: RuleGroupType = { combinator: "and", rules: [
   { field: "TransactionType", operator: "=", value: "Payment" },
@@ -86,6 +87,7 @@ export default function Home() {
             controlClassnames={{ queryBuilder: 'queryBuilder-branches' }}
             parseNumbers="strict"
             validator={defaultValidator}
+            controlElements={{ fieldSelector: FieldSelector }}
           />
 
           <Box>
