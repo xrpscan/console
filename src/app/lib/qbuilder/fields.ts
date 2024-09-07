@@ -2,6 +2,7 @@ import type { Field, RuleType } from "react-querybuilder";
 import { defaultOperators, toFullOption } from "react-querybuilder";
 import { transactionTypes } from "./transaction-types";
 import { transactionResults } from "./transaction-results";
+import { amendmentList } from "./amendments";
 import { TransactionType } from "../common/Constants";
 
 export const validator = (r: RuleType) => !!r.value;
@@ -145,7 +146,7 @@ export const fields = [
   { group: FieldGroups.DID, name: "DIDDocument", label: "DIDDocument", inputType: "string", placeholder: "Enter DIDDocument", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
 
   // EnableAmendment
-  { group: FieldGroups.EnableAmendment, name: "Amendment", label: "Amendment", inputType: "string", placeholder: "Enter amendment", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
+  { group: FieldGroups.EnableAmendment, name: "Amendment", label: "Amendment", valueEditorType: "select", values: amendmentList, defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
 
   // Escrow
   { group: FieldGroups.Escrow, name: "Condition", label: "Condition", inputType: "string", placeholder: "Enter condition", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
