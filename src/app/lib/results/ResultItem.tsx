@@ -6,6 +6,7 @@ import TxHash from "../common/TxHash";
 import AccountTag from "../common/AccountTag";
 import Money from "../common/Money";
 import { formatTransactionResult, getTxResultStyle, isTrustlineRemoved } from "../common/Helpers";
+import { TransactionType } from "../common/Constants";
 
 export const ResultItem = (props: any) => {
     const { i, hit, AccountName, DestinationName } = props;
@@ -25,6 +26,7 @@ export const ResultItem = (props: any) => {
                 </Table.Cell>
                 <Table.Cell align="left">
                     <AccountTag account={tx.Account} link minimal st={tx.SourceTag} name={AccountName}/>
+                    {tx.TransactionType === TransactionType.UNLModify && <Code variant="soft" color="gray">INTERNAL</Code>}
                 </Table.Cell>
                 <Table.Cell align="left">
                     &rarr;
