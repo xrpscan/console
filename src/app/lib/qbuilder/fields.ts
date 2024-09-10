@@ -13,8 +13,8 @@ const validOperators = (operators: string[]) => {
 const EQUAL_OPERATORS   = ["=", "!="]
 const HASH_OPERATORS    = ["=", "!=", "null", "notNull"]
 const STRING_OPERATORS  = ["=", "!=", "contains", "null", "notNull"]
-const DATE_OPERATORS    = ["=", "!=", "<", ">", "between", "notBetween"]
-const NUMERIC_OPERATORS = ["=", "!=", "<", ">", "<=", ">=", "between", "notBetween"]
+const DATE_OPERATORS    = ["=", "!=", "<", ">", "between", "notBetween", "null", "notNull"]
+const NUMERIC_OPERATORS = ["=", "!=", "<", ">", "<=", ">=", "between", "notBetween", "null", "notNull"]
 const ACCOUNT_OPERATORS = ["=", "!=", "contains", "beginsWith", "endsWith", "null", "notNull"]
 
 const FieldGroups = {
@@ -51,16 +51,18 @@ export const fields = [
   { group: FieldGroups.Common, name: "Amount.value", label: "Amount", inputType: "number",  defaultValue: 0, placeholder: "Enter Amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "Amount.currency", label: "Amount (currency)", inputType: "string", placeholder: "Enter Amount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Common, name: "Amount.issuer", label: "Amount (issuer)", inputType: "string", placeholder: "Enter Amount.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.Common, name: "CancelAfter", label: "CancelAfter", inputType: "datetime-local", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
+  { group: FieldGroups.Common, name: "_CancelAfter", label: "CancelAfter", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Common, name: "Destination", label: "Destination", inputType: "string", placeholder: "Enter destination", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS),},
   { group: FieldGroups.Common, name: "DestinationTag", label: "DestinationTag", inputType: "number", defaultValue: 0, placeholder: "Enter destination tag", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Common, name: "Expiration", label: "Expiration", inputType: "datetime-local", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
+  { group: FieldGroups.Common, name: "_Expiration", label: "Expiration", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Common, name: "Fee", label: "Fee", inputType: "number",  defaultValue: 0, placeholder: "Enter fee amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "Flags", label: "Flags", inputType: "number",  defaultValue: 0, placeholder: "Enter tx flags", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "InvoiceID", label: "InvoiceID", inputType: "string", placeholder: "Enter InvoiceID", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
   { group: FieldGroups.Common, name: "LastLedgerSequence", label: "LastLedgerSequence", inputType: "number",  defaultValue: 0, placeholder: "Enter last ledger sequence", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "LedgerSequence", label: "LedgerSequence", inputType: "number",  defaultValue: 0, placeholder: "Enter ledger sequence", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Common, name: "Memos.Memo.MemoData", label: "Memo", inputType: "string", placeholder: "Enter memo", defaultOperator: "contains", operators: validOperators(STRING_OPERATORS), },
+  { group: FieldGroups.Common, name: "Memos.Memo.MemoData", label: "Memo", inputType: "string", placeholder: "Enter memo data", defaultOperator: "contains", operators: validOperators(STRING_OPERATORS), },
+  { group: FieldGroups.Common, name: "Memos.Memo.MemoFormat", label: "Memo (Format)", inputType: "string", placeholder: "Enter memo format", defaultOperator: "contains", operators: validOperators(STRING_OPERATORS), },
+  { group: FieldGroups.Common, name: "Memos.Memo.MemoType", label: "Memo (Type)", inputType: "string", placeholder: "Enter memo type", defaultOperator: "contains", operators: validOperators(STRING_OPERATORS), },
   { group: FieldGroups.Common, name: "OfferSequence", label: "OfferSequence", inputType: "number",  defaultValue: 0, placeholder: "Enter offer sequence", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "Owner", label: "Owner", inputType: "string", placeholder: "Enter owner", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.Common, name: "Sequence", label: "Sequence", inputType: "number",  defaultValue: 0, placeholder: "Enter sequence", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
@@ -71,7 +73,7 @@ export const fields = [
   { group: FieldGroups.Common, name: "TxnSignature", label: "TxnSignature", inputType: "string", placeholder: "Enter tx signature", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Common, name: "URI", label: "URI", inputType: "string", placeholder: "Enter URI", defaultOperator: "=", operators: validOperators(STRING_OPERATORS), },
   { group: FieldGroups.Common, name: "ctid", label: "ctid", inputType: "string", placeholder: "Enter CTID", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
-  // { group: FieldGroups.Common, name: "date", label: "date", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
+  { group: FieldGroups.Common, name: "_date", label: "date", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Common, name: "hash", label: "hash", inputType: "string", placeholder: "Enter tx hash", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Common, name: "ledger_index", label: "ledger_index", inputType: "number",  defaultValue: 0, placeholder: "Enter ledger index", defaultOperator: "=", operators: validOperators(DATE_OPERATORS), },
 
@@ -150,7 +152,7 @@ export const fields = [
 
   // Escrow
   { group: FieldGroups.Escrow, name: "Condition", label: "Condition", inputType: "string", placeholder: "Enter condition", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
-  { group: FieldGroups.Escrow, name: "FinishAfter", label: "FinishAfter", inputType: "datetime-local", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
+  { group: FieldGroups.Escrow, name: "_FinishAfter", label: "FinishAfter", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Escrow, name: "Fulfillment", label: "Fulfillment", inputType: "string", placeholder: "Enter fulfillment", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
 
   // NFToken
@@ -175,7 +177,7 @@ export const fields = [
 
   // Oracle
   { group: FieldGroups.Oracle, name: "AssetClass", label: "AssetClass", inputType: "string", placeholder: "Enter issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.Oracle, name: "LastUpdateTime", label: "LastUpdateTime", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
+  { group: FieldGroups.Oracle, name: "_LastUpdateTime", label: "LastUpdateTime", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Oracle, name: "OracleDocumentID", label: "OracleDocumentID", inputType: "number",  defaultValue: 0, placeholder: "Enter offer sequence", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Oracle, name: "PriceDataSeries.BaseAsset", label: "BaseAsset", inputType: "string", placeholder: "Enter issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.Oracle, name: "PriceDataSeries.QuoteAsset", label: "QuoteAsset", inputType: "string", placeholder: "Enter issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
