@@ -25,8 +25,8 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
     const client = request.headers.get("x-forwarded-for");
     const query = await request.json();
-    console.log(`IP: ${client}, QUERY: ${JSON.stringify(query)}`);
     const results = await getData(query);
+    console.log(`IP: ${client}, QUERY: ${JSON.stringify(query)}, RESULT: ${JSON.stringify(results?.hits?.total)}`);
     return Response.json(results);
 }
 
