@@ -1,4 +1,5 @@
 import { Client } from "@elastic/elasticsearch";
+import chalk from 'chalk';
 
 const MAX_HITS = 200;
 const PLATFORM_SEARCH_INDEX = "platform.transactions";
@@ -26,7 +27,9 @@ export async function POST(request: Request) {
     const client = request.headers.get("x-forwarded-for");
     const query = await request.json();
     const results = await getData(query);
-    console.log(`IP: ${client}, QUERY: ${JSON.stringify(query)}, RESULT: ${JSON.stringify(results?.hits?.total)}`);
+    const resultCount = (typeof results?.hits?.total === 'number') ? results?.hits?.total : results?.hits?.total?.value;
+    const colorFunc = (resultCount && resultCount > 0) ? chalk.bgGreen : chalk.bgRed;
+    console.log(`IP: ${client}, QUERY: ${JSON.stringify(query)}`, colorFunc(`RESULT: ${resultCount}`));
     return Response.json(results);
 }
 
