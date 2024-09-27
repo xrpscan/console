@@ -1,8 +1,8 @@
 import { Client } from "@elastic/elasticsearch";
 import chalk from 'chalk';
 
-const MAX_HITS = 200;
-const PLATFORM_SEARCH_INDEX = "platform.transactions";
+const APP_MAX_HITS = Number(process.env.APP_MAX_HITS || 200);
+const PLATFORM_SEARCH_INDEX = `${process.env.ELASTICSEARCH_NAMESPACE}.transactions`;
 
 const esclient = new Client({
     node: process.env.ELASTICSEARCH_URL,
@@ -37,7 +37,7 @@ async function getData(query: object) {
     const results = await esclient.search({
         index: PLATFORM_SEARCH_INDEX,
         body: { query },
-        size: MAX_HITS,
+        size: APP_MAX_HITS,
     })
     return results;
 }
