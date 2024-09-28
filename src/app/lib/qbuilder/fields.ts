@@ -12,7 +12,7 @@ const validOperators = (operators: string[]) => {
 const EQUAL_OPERATORS   = ["=", "!="]
 const HASH_OPERATORS    = ["=", "!=", "null", "notNull"]
 const STRING_OPERATORS  = ["=", "!=", "contains", "null", "notNull"]
-const DATE_OPERATORS    = ["=", "!=", "<", ">", "between", "notBetween", "null", "notNull"]
+const DATE_OPERATORS    = ["=", "!=", "<=", ">=", "between", "notBetween", "null", "notNull"]
 const NUMERIC_OPERATORS = ["=", "!=", "<", ">", "<=", ">=", "between", "notBetween", "null", "notNull"]
 const ACCOUNT_OPERATORS = ["=", "!=", "contains", "beginsWith", "endsWith", "null", "notNull"]
 
@@ -45,19 +45,20 @@ const FieldGroups = {
 export const fields = [
   // Common fields
   { group: FieldGroups.Common, name: "TransactionType", label: "TransactionType", valueEditorType: "select", values: transactionTypes, defaultValue: "Payment", operators: validOperators(EQUAL_OPERATORS), },
-  // { group: FieldGroups.Common, name: "_date", label: "date", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
+  { group: FieldGroups.Common, name: "_date", label: "date", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Common, name: "hash", label: "hash", inputType: "string", placeholder: "Enter tx hash", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Common, name: "ledger_index", label: "ledger_index", inputType: "number",  defaultValue: 0, placeholder: "Enter ledger index", defaultOperator: "=", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Common, name: "Account", label: "Account", inputType: "string", placeholder: "Enter sending account", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.Common, name: "AccountTxnID", label: "AccountTxnID", inputType: "string", placeholder: "Enter AccountTxnID", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
-  { group: FieldGroups.Common, name: "Amount.value", label: "Amount", inputType: "number",  defaultValue: 0, placeholder: "Enter Amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Common, name: "Amount.currency", label: "Amount (currency)", inputType: "string", placeholder: "Enter Amount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Common, name: "Amount._value", label: "Amount", inputType: "number",  defaultValue: 0, placeholder: "Enter Amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Common, name: "Amount._currency", label: "Amount (currency)", inputType: "string", placeholder: "Enter Amount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Common, name: "Amount.issuer", label: "Amount (issuer)", inputType: "string", placeholder: "Enter Amount.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.Common, name: "_CancelAfter", label: "CancelAfter", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Common, name: "Destination", label: "Destination", inputType: "string", placeholder: "Enter destination", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS),},
   { group: FieldGroups.Common, name: "DestinationTag", label: "DestinationTag", inputType: "number", defaultValue: 0, placeholder: "Enter destination tag", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "_Expiration", label: "Expiration", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
-  { group: FieldGroups.Common, name: "Fee", label: "Fee", inputType: "number",  defaultValue: 0, placeholder: "Enter fee amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Common, name: "_Fee", label: "Fee", inputType: "number",  defaultValue: 0, placeholder: "Enter fee in XRP unit", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Common, name: "Fee", label: "Fee (Drops)", inputType: "number",  defaultValue: 0, placeholder: "Enter fee in XRP Drops unit", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "Flags", label: "Flags", inputType: "number",  defaultValue: 0, placeholder: "Enter tx flags", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "InvoiceID", label: "InvoiceID", inputType: "string", placeholder: "Enter InvoiceID", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
   { group: FieldGroups.Common, name: "LastLedgerSequence", label: "LastLedgerSequence", inputType: "number",  defaultValue: 0, placeholder: "Enter last ledger sequence", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
@@ -77,22 +78,22 @@ export const fields = [
   { group: FieldGroups.Common, name: "ctid", label: "ctid", inputType: "string", placeholder: "Enter CTID", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
 
   // Metadata
-  { group: FieldGroups.Metadata, name: "meta.delivered_amount.value", label: "delivered_amount", inputType: "number",  defaultValue: 0, placeholder: "Enter delivered_amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Metadata, name: "meta.delivered_amount.currency", label: "delivered_amount (currency)", inputType: "string", placeholder: "Enter delivered_amount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Metadata, name: "meta.delivered_amount._value", label: "delivered_amount", inputType: "number",  defaultValue: 0, placeholder: "Enter delivered_amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Metadata, name: "meta.delivered_amount._currency", label: "delivered_amount (currency)", inputType: "string", placeholder: "Enter delivered_amount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Metadata, name: "meta.delivered_amount.issuer", label: "delivered_amount (issuer)", inputType: "string", placeholder: "Enter delivered_amount.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.Metadata, name: "meta.TransactionIndex", label: "TransactionIndex", inputType: "number",  defaultValue: 0, placeholder: "Enter tx index", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Metadata, name: "meta.TransactionResult", label: "TransactionResult", valueEditorType: "select", values: transactionResults, defaultValue: "tesSUCCESS", operators: validOperators(EQUAL_OPERATORS), },
 
   // Payment
-  { group: FieldGroups.Payment, name: "DeliverMax.value", label: "DeliverMax", inputType: "number",  defaultValue: 0, placeholder: "Enter DeliverMax", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Payment, name: "DeliverMax.currency", label: "DeliverMax (currency)", inputType: "string", placeholder: "Enter DeliverMax.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Payment, name: "DeliverMax._value", label: "DeliverMax", inputType: "number",  defaultValue: 0, placeholder: "Enter DeliverMax", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Payment, name: "DeliverMax._currency", label: "DeliverMax (currency)", inputType: "string", placeholder: "Enter DeliverMax.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Payment, name: "DeliverMax.issuer", label: "DeliverMax (issuer)", inputType: "string", placeholder: "Enter DeliverMax.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.Payment, name: "DeliverMin.value", label: "DeliverMin", inputType: "number",  defaultValue: 0, placeholder: "Enter DeliverMin", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Payment, name: "DeliverMin.currency", label: "DeliverMin (currency)", inputType: "string", placeholder: "Enter DeliverMin.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Payment, name: "DeliverMin._value", label: "DeliverMin", inputType: "number",  defaultValue: 0, placeholder: "Enter DeliverMin", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Payment, name: "DeliverMin._currency", label: "DeliverMin (currency)", inputType: "string", placeholder: "Enter DeliverMin.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Payment, name: "DeliverMin.issuer", label: "DeliverMin (issuer)", inputType: "string", placeholder: "Enter DeliverMin.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.Payment, name: "Paths", label: "Paths", inputType: "string", placeholder: "Enter InvoiceID", defaultOperator: "=", operators: validOperators(STRING_OPERATORS), }, // TODO
-  { group: FieldGroups.Payment, name: "SendMax.value", label: "SendMax", inputType: "number",  defaultValue: 0, placeholder: "Enter SendMax", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Payment, name: "SendMax.currency", label: "SendMax (currency)", inputType: "string", placeholder: "Enter SendMax.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Payment, name: "SendMax._value", label: "SendMax", inputType: "number",  defaultValue: 0, placeholder: "Enter SendMax", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Payment, name: "SendMax._currency", label: "SendMax (currency)", inputType: "string", placeholder: "Enter SendMax.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Payment, name: "SendMax.issuer", label: "SendMax (issuer)", inputType: "string", placeholder: "Enter SendMax.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
 
   // AccountSet
@@ -108,27 +109,27 @@ export const fields = [
   { group: FieldGroups.AccountSet, name: "WalletSize", label: "WalletSize (deprecated)", inputType: "number",  defaultValue: 0, placeholder: "Enter wallet size", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
 
   // AMM
-  { group: FieldGroups.AMM, name: "Amount2.value", label: "Amount2", inputType: "number",  defaultValue: 0, placeholder: "Enter Amount2", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.AMM, name: "Amount2.currency", label: "Amount2 (currency)", inputType: "string", placeholder: "Enter Amount2.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.AMM, name: "Amount2._value", label: "Amount2", inputType: "number",  defaultValue: 0, placeholder: "Enter Amount2", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.AMM, name: "Amount2._currency", label: "Amount2 (currency)", inputType: "string", placeholder: "Enter Amount2.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "Amount2.issuer", label: "Amount2 (issuer)", inputType: "string", placeholder: "Enter Amount2.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.AMM, name: "Asset.currency", label: "Asset (currency)", inputType: "string", placeholder: "Enter Asset.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.AMM, name: "Asset._currency", label: "Asset (currency)", inputType: "string", placeholder: "Enter Asset.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "Asset.issuer", label: "Asset (issuer)", inputType: "string", placeholder: "Enter Asset.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.AMM, name: "Asset2.currency", label: "Asset2 (currency)", inputType: "string", placeholder: "Enter Asset2.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.AMM, name: "Asset2._currency", label: "Asset2 (currency)", inputType: "string", placeholder: "Enter Asset2.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "Asset2.issuer", label: "Asset2 (issuer)", inputType: "string", placeholder: "Enter Asset2.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.AMM, name: "AuthAccounts", label: "AuthAccounts", inputType: "string", placeholder: "Enter auth account", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.AMM, name: "BidMax.value", label: "BidMax", inputType: "number",  defaultValue: 0, placeholder: "Enter BidMax", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.AMM, name: "BidMax.currency", label: "BidMax (currency)", inputType: "string", placeholder: "Enter BidMax.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.AMM, name: "BidMax._value", label: "BidMax", inputType: "number",  defaultValue: 0, placeholder: "Enter BidMax", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.AMM, name: "BidMax._currency", label: "BidMax (currency)", inputType: "string", placeholder: "Enter BidMax.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "BidMax.issuer", label: "BidMax (issuer)", inputType: "string", placeholder: "Enter BidMax.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.AMM, name: "BidMin.value", label: "BidMin", inputType: "number",  defaultValue: 0, placeholder: "Enter BidMin", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.AMM, name: "BidMin.currency", label: "BidMin (currency)", inputType: "string", placeholder: "Enter BidMin.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.AMM, name: "BidMin._value", label: "BidMin", inputType: "number",  defaultValue: 0, placeholder: "Enter BidMin", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.AMM, name: "BidMin._currency", label: "BidMin (currency)", inputType: "string", placeholder: "Enter BidMin.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "BidMin.issuer", label: "BidMin (issuer)", inputType: "string", placeholder: "Enter BidMin.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.AMM, name: "EPrice.value", label: "EPrice", inputType: "number",  defaultValue: 0, placeholder: "Enter EPrice", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.AMM, name: "EPrice.currency", label: "EPrice (currency)", inputType: "string", placeholder: "Enter EPrice.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.AMM, name: "EPrice._value", label: "EPrice", inputType: "number",  defaultValue: 0, placeholder: "Enter EPrice", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.AMM, name: "EPrice._currency", label: "EPrice (currency)", inputType: "string", placeholder: "Enter EPrice.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "EPrice.issuer", label: "EPrice (issuer)", inputType: "string", placeholder: "Enter EPrice.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.AMM, name: "LPTokenIn.value", label: "LPTokenIn", inputType: "number",  defaultValue: 0, placeholder: "Enter LPTokenIn", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.AMM, name: "LPTokenIn._value", label: "LPTokenIn", inputType: "number",  defaultValue: 0, placeholder: "Enter LPTokenIn", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.AMM, name: "LPTokenIn.currency", label: "LPTokenIn (currency)", inputType: "string", placeholder: "Enter LPTokenIn.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "LPTokenIn.issuer", label: "LPTokenIn (issuer)", inputType: "string", placeholder: "Enter LPTokenIn.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.AMM, name: "LPTokenOut.value", label: "LPTokenOut", inputType: "number",  defaultValue: 0, placeholder: "Enter LPTokenOut", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.AMM, name: "LPTokenOut._value", label: "LPTokenOut", inputType: "number",  defaultValue: 0, placeholder: "Enter LPTokenOut", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.AMM, name: "LPTokenOut.currency", label: "LPTokenOut (currency)", inputType: "string", placeholder: "Enter LPTokenOut.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "LPTokenOut.issuer", label: "LPTokenOut (issuer)", inputType: "string", placeholder: "Enter LPTokenOut.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.AMM, name: "TradingFee", label: "TradingFee", inputType: "number",  defaultValue: 0, placeholder: "Enter trading fee", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
@@ -156,8 +157,8 @@ export const fields = [
 
   // NFToken
   { group: FieldGroups.NFToken, name: "Issuer", label: "Issuer", inputType: "string", placeholder: "Enter issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.NFToken, name: "NFTokenBrokerFee.value", label: "NFTokenBrokerFee", inputType: "number",  defaultValue: 0, placeholder: "Enter NFTokenBrokerFee", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.NFToken, name: "NFTokenBrokerFee.currency", label: "NFTokenBrokerFee (currency)", inputType: "string", placeholder: "Enter NFTokenBrokerFee.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.NFToken, name: "NFTokenBrokerFee._value", label: "NFTokenBrokerFee", inputType: "number",  defaultValue: 0, placeholder: "Enter NFTokenBrokerFee", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.NFToken, name: "NFTokenBrokerFee._currency", label: "NFTokenBrokerFee (currency)", inputType: "string", placeholder: "Enter NFTokenBrokerFee.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.NFToken, name: "NFTokenBrokerFee.issuer", label: "NFTokenBrokerFee (issuer)", inputType: "string", placeholder: "Enter NFTokenBrokerFee.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.NFToken, name: "NFTokenBuyOffer", label: "NFTokenBuyOffer", inputType: "string", placeholder: "Enter NFTokenBuyOffer", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
   { group: FieldGroups.NFToken, name: "NFTokenID", label: "NFTokenID", inputType: "string", placeholder: "Enter NFTokenID", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
@@ -167,11 +168,11 @@ export const fields = [
   { group: FieldGroups.NFToken, name: "TransferFee", label: "TransferFee", inputType: "number",  defaultValue: 0, placeholder: "Enter transfer fee", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
 
   // Offer
-  { group: FieldGroups.Offer, name: "TakerGets.value", label: "TakerGets", inputType: "number",  defaultValue: 0, placeholder: "Enter TakerGets", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Offer, name: "TakerGets.currency", label: "TakerGets (currency)", inputType: "string", placeholder: "Enter TakerGets.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Offer, name: "TakerGets._value", label: "TakerGets", inputType: "number",  defaultValue: 0, placeholder: "Enter TakerGets", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Offer, name: "TakerGets._currency", label: "TakerGets (currency)", inputType: "string", placeholder: "Enter TakerGets.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Offer, name: "TakerGets.issuer", label: "TakerGets (issuer)", inputType: "string", placeholder: "Enter TakerGets.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.Offer, name: "TakerPays.value", label: "TakerPays", inputType: "number",  defaultValue: 0, placeholder: "Enter TakerPays", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.Offer, name: "TakerPays.currency", label: "TakerPays (currency)", inputType: "string", placeholder: "Enter TakerPays.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Offer, name: "TakerPays._value", label: "TakerPays", inputType: "number",  defaultValue: 0, placeholder: "Enter TakerPays", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.Offer, name: "TakerPays._currency", label: "TakerPays (currency)", inputType: "string", placeholder: "Enter TakerPays.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Offer, name: "TakerPays.issuer", label: "TakerPays (issuer)", inputType: "string", placeholder: "Enter TakerPays.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
 
   // Oracle
@@ -185,8 +186,8 @@ export const fields = [
   { group: FieldGroups.Oracle, name: "Provider", label: "Provider", inputType: "string", placeholder: "Enter issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
 
   // PaymentChannel
-  { group: FieldGroups.PaymentChannel, name: "Balance.value", label: "Balance", inputType: "number",  defaultValue: 0, placeholder: "Enter Balance", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.PaymentChannel, name: "Balance.currency", label: "Balance (currency)", inputType: "string", placeholder: "Enter Balance.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.PaymentChannel, name: "Balance._value", label: "Balance", inputType: "number",  defaultValue: 0, placeholder: "Enter Balance", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.PaymentChannel, name: "Balance._currency", label: "Balance (currency)", inputType: "string", placeholder: "Enter Balance.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.PaymentChannel, name: "Balance.issuer", label: "Balance (issuer)", inputType: "string", placeholder: "Enter Balance.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.PaymentChannel, name: "Channel", label: "Channel", inputType: "string", placeholder: "Enter channel", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
   { group: FieldGroups.PaymentChannel, name: "PublicKey", label: "PublicKey", inputType: "string", placeholder: "Enter public key", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
@@ -213,8 +214,8 @@ export const fields = [
   { group: FieldGroups.TicketCreate, name: "TicketCount", label: "TicketCount", inputType: "number",  defaultValue: 0, placeholder: "Enter ticket count", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
 
   // TrustSet
-  { group: FieldGroups.TrustSet, name: "LimitAmount.value", label: "LimitAmount", inputType: "number",  defaultValue: 0, placeholder: "Enter LimitAmount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
-  { group: FieldGroups.TrustSet, name: "LimitAmount.currency", label: "LimitAmount (currency)", inputType: "string", placeholder: "Enter LimitAmount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.TrustSet, name: "LimitAmount._value", label: "LimitAmount", inputType: "number",  defaultValue: 0, placeholder: "Enter LimitAmount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
+  { group: FieldGroups.TrustSet, name: "LimitAmount._currency", label: "LimitAmount (currency)", inputType: "string", placeholder: "Enter LimitAmount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.TrustSet, name: "LimitAmount.issuer", label: "LimitAmount (issuer)", inputType: "string", placeholder: "Enter LimitAmount.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.TrustSet, name: "QualityIn", label: "QualityIn", inputType: "number",  defaultValue: 0, placeholder: "Enter quality in", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.TrustSet, name: "QualityOut", label: "QualityOut", inputType: "number",  defaultValue: 0, placeholder: "Enter quality out", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
