@@ -25,7 +25,7 @@ const AccountTag = (props: any) => {
   }
   if (typeof name?.name === "string") {
     accountName = name?.name;
-    if (typeof name?.desc === "string") {
+    if (typeof name?.desc === "string" && name?.desc !== "") {
       accountName = `${accountName} (${name?.desc})`;
     }
   }
