@@ -38,8 +38,11 @@ export const ResultItem = (props: any) => {
                     { (tx.meta?.delivered_amount?.value < tx.Amount?.value) &&
                        <><PieChartIcon/>&nbsp;</>
                     }
-                    { tx.meta?.delivered_amount?.value &&
+                    { Number(tx.meta?.delivered_amount?.value) > 0 &&
                         <Money value={tx.meta.delivered_amount.value} currency={tx.meta.delivered_amount.currency} issuer={tx.meta.delivered_amount.issuer} drops min={6} max={6} />
+                    }
+                    { tx.meta?.delivered_amount?.value === "unavailable" && tx.Amount?.value &&
+                        <Money value={tx.Amount.value} currency={tx.Amount.currency} issuer={tx.Amount.issuer} drops min={6} max={6} />
                     }
                     {!(tx.meta?.delivered_amount?.value) && tx.Amount?.value &&
                         <Money value={tx.Amount.value} currency={tx.Amount.currency} issuer={tx.Amount.issuer} drops min={6} max={6} />
