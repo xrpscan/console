@@ -8,7 +8,7 @@ export const GlobalNotice = () => {
             <InfoCircledIcon />
         </Callout.Icon>
         <Callout.Text>
-            XRPSCAN Console beta is now available for testing. Values in <Code>Amount</Code> or similar fields (<Code>Fee</Code>, <Code>DeliverMax</Code>, <Code>BidMax</Code> etc.) may now be entered in XRP units.
+            Advanced search engine for the XRPL. Values in <Code>Amount</Code> and similar fields (<Code>Fee</Code>, <Code>DeliverMax</Code>, <Code>BidMax</Code> etc.) may be entered in XRP units.
         </Callout.Text>
     </Callout.Root>
     </>;
