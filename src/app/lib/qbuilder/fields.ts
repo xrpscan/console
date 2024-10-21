@@ -45,11 +45,10 @@ const FieldGroups = {
 export const fields = [
   // Common fields
   { group: FieldGroups.Common, name: "TransactionType", label: "TransactionType", valueEditorType: "select", values: transactionTypes, defaultValue: "Payment", operators: validOperators(EQUAL_OPERATORS), },
-  { group: FieldGroups.Common, name: "_date", label: "date", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
-  { group: FieldGroups.Common, name: "hash", label: "hash", inputType: "string", placeholder: "Enter tx hash", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Common, name: "_date", label: "Date", inputType: "date", defaultOperator: "between", operators: validOperators(DATE_OPERATORS), },
+  { group: FieldGroups.Common, name: "hash", label: "Transaction Hash", inputType: "string", placeholder: "Enter tx hash", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Common, name: "ledger_index", label: "ledger_index", inputType: "number",  defaultValue: 0, placeholder: "Enter ledger index", defaultOperator: "=", operators: validOperators(DATE_OPERATORS), },
   { group: FieldGroups.Common, name: "Account", label: "Account", inputType: "string", placeholder: "Enter sending account", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
-  { group: FieldGroups.Common, name: "AccountTxnID", label: "AccountTxnID", inputType: "string", placeholder: "Enter AccountTxnID", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
   { group: FieldGroups.Common, name: "Amount._value", label: "Amount", inputType: "number",  defaultValue: 0, placeholder: "Enter Amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "Amount._currency", label: "Amount (currency)", inputType: "string", placeholder: "Enter Amount.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Common, name: "Amount.issuer", label: "Amount (issuer)", inputType: "string", placeholder: "Enter Amount.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
@@ -75,7 +74,8 @@ export const fields = [
   { group: FieldGroups.Common, name: "TicketSequence", label: "TicketSequence", inputType: "number",  defaultValue: 0, placeholder: "Enter ticket sequence", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.Common, name: "TxnSignature", label: "TxnSignature", inputType: "string", placeholder: "Enter tx signature", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.Common, name: "URI", label: "URI", inputType: "string", placeholder: "Enter URI", defaultOperator: "=", operators: validOperators(STRING_OPERATORS), },
-  { group: FieldGroups.Common, name: "ctid", label: "ctid", inputType: "string", placeholder: "Enter CTID", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Common, name: "ctid", label: "CTID", inputType: "string", placeholder: "Enter CTID", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
+  { group: FieldGroups.Common, name: "AccountTxnID", label: "AccountTxnID", inputType: "string", placeholder: "Enter AccountTxnID", defaultOperator: "=", operators: validOperators(HASH_OPERATORS), },
 
   // Metadata
   { group: FieldGroups.Metadata, name: "meta.delivered_amount._value", label: "delivered_amount", inputType: "number",  defaultValue: 0, placeholder: "Enter delivered_amount", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
