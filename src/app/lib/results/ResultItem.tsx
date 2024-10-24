@@ -1,5 +1,5 @@
-import { CheckIcon, Cross1Icon, ExclamationTriangleIcon, PieChartIcon, PlusIcon, MinusIcon, IdCardIcon } from "@radix-ui/react-icons";
-import { Code, Table } from "@radix-ui/themes";
+import { CheckIcon, PieChartIcon, PlusIcon, MinusIcon, IdCardIcon } from "@radix-ui/react-icons";
+import { Code, Flex, Table } from "@radix-ui/themes";
 import TxType from "../common/TxType";
 import DateTag from "../common/DateTag";
 import TxHash from "../common/TxHash";
@@ -7,6 +7,7 @@ import AccountTag from "../common/AccountTag";
 import Money from "../common/Money";
 import { formatTransactionResult, getTxResultStyle, isTrustlineRemoved } from "../common/Helpers";
 import { TransactionType } from "../common/Constants";
+import AccountIcon from "../common/AccountIcon";
 
 export const ResultItem = (props: any) => {
     const { i, hit, AccountName, DestinationName } = props;
@@ -25,14 +26,20 @@ export const ResultItem = (props: any) => {
                     <TxHash hash={tx.hash} />
                 </Table.Cell>
                 <Table.Cell align="left">
-                    <AccountTag account={tx.Account} link minimal st={tx.SourceTag} name={AccountName}/>
-                    {tx.TransactionType === TransactionType.UNLModify && <Code variant="soft" color="gray">INTERNAL</Code>}
+                    <Flex gap="2">
+                        <AccountIcon twitter={AccountName?.twitter} />
+                        <AccountTag account={tx.Account} link minimal st={tx.SourceTag} name={AccountName}/>
+                        {tx.TransactionType === TransactionType.UNLModify && <Code variant="soft" color="gray">INTERNAL</Code>}
+                    </Flex>
                 </Table.Cell>
                 <Table.Cell align="left">
                     &rarr;
                 </Table.Cell>
                 <Table.Cell align="left">
-                    {tx.Destination ? <AccountTag account={tx.Destination} link minimal dt={tx.DestinationTag} name={DestinationName}/> : "XRPL" }
+                    <Flex gap="2">
+                        <AccountIcon twitter={DestinationName?.twitter} />
+                        {tx.Destination ? <AccountTag account={tx.Destination} link minimal dt={tx.DestinationTag} name={DestinationName}/> : "XRPL" }
+                    </Flex>
                 </Table.Cell>
                 <Table.Cell align="right">
                     { (tx.meta?.delivered_amount?.value < tx.Amount?.value) &&
