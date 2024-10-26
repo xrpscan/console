@@ -3,6 +3,7 @@ import { Theme } from "@radix-ui/themes";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "@radix-ui/themes/styles.css";
 import "@/app/ui/global.css";
+import "@/app/ui/text.css";
 import Header from "./header";
 import Footer from "./footer";
 import Container from "react-bootstrap/Container";

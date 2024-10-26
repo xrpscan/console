@@ -1,0 +1,19 @@
+/* Text CSS classes. Import this file from app/layout.tsx */
+
+/*
+* Text
+*/
+
+/* Alignment */
+.text-justify  { text-align: justify !important; }
+.text-wrap     { white-space: normal !important; }
+.text-nowrap   { white-space: nowrap !important; }
+
+/* Transformation */
+.text-lowercase  { text-transform: lowercase !important; }
+.text-uppercase  { text-transform: uppercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+
+/* Misc */
+.text-decoration-none { text-decoration: none !important; }
+.text-reset { color: inherit !important; }
