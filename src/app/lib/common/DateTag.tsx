@@ -21,7 +21,7 @@ const DateTag = (props: IDateTag) => {
 	});
 
 	return (
-		<>{formattedDate}</>
+		<span className="text-nowrap">{formattedDate}</span>
 	)
 }
 
