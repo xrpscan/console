@@ -36,7 +36,13 @@ export async function POST(request: Request) {
 async function getData(query: object) {
     const results = await esclient.search({
         index: PLATFORM_SEARCH_INDEX,
-        body: { query },
+        body: {
+            query,
+            sort: [
+                { "ledger_index": {"order": "desc"} },
+                "_score"
+            ]
+        },
         size: APP_MAX_HITS,
     })
     return results;
