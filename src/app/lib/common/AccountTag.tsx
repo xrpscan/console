@@ -52,7 +52,7 @@ const AccountTag = (props: any) => {
     </Flex>
   }
 
-  return styledLinkedAccountNameTags;
+  return <span className="text-nowrap">{styledLinkedAccountNameTags}</span>;
 }
 
 export default AccountTag;
