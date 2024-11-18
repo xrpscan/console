@@ -11,10 +11,10 @@ const validOperators = (operators: string[]) => {
 
 const EQUAL_OPERATORS   = ["=", "!="]
 const HASH_OPERATORS    = ["=", "!=", "null", "notNull"]
-const STRING_OPERATORS  = ["=", "!=", "contains", "null", "notNull"]
+const STRING_OPERATORS  = ["=", "!=", "contains", "doesNotContain", "beginsWith", "endsWith", "null", "notNull"]
 const DATE_OPERATORS    = ["=", "!=", "<=", ">=", "between", "notBetween", "null", "notNull"]
 const NUMERIC_OPERATORS = ["=", "!=", "<", ">", "<=", ">=", "between", "notBetween", "null", "notNull"]
-const ACCOUNT_OPERATORS = ["=", "!=", "contains", "beginsWith", "endsWith", "null", "notNull"]
+const ACCOUNT_OPERATORS = ["=", "!=", "contains", "doesNotContain", "beginsWith", "endsWith", "null", "notNull"]
 
 const FieldGroups = {
   Common: "Common fields",
