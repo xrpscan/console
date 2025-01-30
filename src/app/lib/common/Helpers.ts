@@ -47,6 +47,9 @@ export const getTxTypeLabel = (txType: string) => {
 		case 'AMMBid':
 			type = 'AMM Bid';
 			break;
+		case 'AMMClawback':
+			type = 'AMM Clawback';
+			break;
 		case 'AMMCreate':
 			type = 'AMM Create';
 			break;

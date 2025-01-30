@@ -21,6 +21,7 @@ export const transactionTypes: OptionGroup[] = [
     label: "AMM",
     TransactionTypes: [
       TransactionType.AMMBid,
+      TransactionType.AMMClawback,
       TransactionType.AMMCreate,
       TransactionType.AMMDelete,
       TransactionType.AMMDeposit,

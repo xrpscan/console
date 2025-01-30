@@ -126,6 +126,7 @@ export const fields = [
   { group: FieldGroups.AMM, name: "EPrice._value", label: "EPrice", inputType: "number",  defaultValue: 0, placeholder: "Enter EPrice", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.AMM, name: "EPrice._currency", label: "EPrice (currency)", inputType: "string", placeholder: "Enter EPrice.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "EPrice.issuer", label: "EPrice (issuer)", inputType: "string", placeholder: "Enter EPrice.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
+  { group: FieldGroups.AMM, name: "Holder", label: "Holder", inputType: "string", placeholder: "Enter account holding the asset to be clawed back", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },
   { group: FieldGroups.AMM, name: "LPTokenIn._value", label: "LPTokenIn", inputType: "number",  defaultValue: 0, placeholder: "Enter LPTokenIn", defaultOperator: "=", operators: validOperators(NUMERIC_OPERATORS), },
   { group: FieldGroups.AMM, name: "LPTokenIn.currency", label: "LPTokenIn (currency)", inputType: "string", placeholder: "Enter LPTokenIn.currency", defaultOperator: "=", operators: validOperators(EQUAL_OPERATORS), },
   { group: FieldGroups.AMM, name: "LPTokenIn.issuer", label: "LPTokenIn (issuer)", inputType: "string", placeholder: "Enter LPTokenIn.issuer", defaultOperator: "=", operators: validOperators(ACCOUNT_OPERATORS), },

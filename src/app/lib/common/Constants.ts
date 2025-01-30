@@ -17,6 +17,7 @@ const TransactionType = {
   AccountSet: 'AccountSet',
   AccountDelete: 'AccountDelete',
   AMMBid: 'AMMBid',
+  AMMClawback: 'AMMClawback',
   AMMCreate: 'AMMCreate',
   AMMDelete: 'AMMDelete',
   AMMDeposit: 'AMMDeposit',
