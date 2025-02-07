@@ -76,6 +76,11 @@ export const ResultItem = (props: any) => {
                             <Code variant="soft" color="gray">OFFER SEQ: {tx.OfferSequence}</Code>
                         </>
                     }
+                    { tx.TransactionType === TransactionType.AMMVote && tx.TradingFee >= 0 &&
+                        <>
+                            <Code variant="soft" color="gray">TRADING FEE: {tx.TradingFee}</Code>
+                        </>
+                    }
                 </Table.Cell>
                 <Table.Cell align="right">
                     <span>
